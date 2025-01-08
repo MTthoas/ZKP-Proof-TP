@@ -3,4 +3,4 @@ circom
 circuit_js/
 powersOfTau28_hez_final_12.ptau
 verification_key.json
-circuit
+circuit_*
