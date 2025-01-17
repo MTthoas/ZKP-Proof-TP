@@ -108,10 +108,16 @@ Ouvrez votre terminal et exécutez ces commandes :
 2. **Initialisez les paramètres de configuration à notre circuit zk-SNARKs :**
    Exécutez cette commande pour calculer une preuve à partir du circuit et de votre secret :
    ```bash
+   npx snarkjs groth16 setup circuit.r1cs powersOfTau28_hez_final_12.ptau circuit_0000.zkey
+   ```
+
+3. **Générez une preuve cryptographique succincte :**
+   Exécutez cette commande pour calculer une preuve à partir du circuit et de votre secret :
+   ```bash
    npx snarkjs groth16 fullProve input.json circuit_js/circuit.wasm circuit_0000.zkey
    ```
 
-3. **Générez la clé de vérification :**
+4. **Générez la clé de vérification :**
    Enfin, générez la clé de vérification au format JSON afin de pouvoir utiliser notre circuit
    ```bash
    npx snarkjs zkey export verificationkey circuit_0000.zkey verification_key.json
