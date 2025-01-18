@@ -96,7 +96,38 @@ Ouvrez votre terminal et exécutez ces commandes :
 
 ---
 
-### **Étape 4 : Générer une preuve**
+### **Étape 4 : Mise en place du coordinateur**
+**But :** Générer le trusted setup pour zk-SNARKs.
+
+1. **Téléchargez sur votre projet un fichier pré-généré :**
+   Dans votre terminal, exécutez :
+   ```bash
+   curl -o powersOfTau28_hez_final_12.ptau https://hermez.s3-eu-west-1.amazonaws.com/powersOfTau28_hez_final_12.ptau
+   ```
+
+2. **Initialisez les paramètres de configuration à notre circuit zk-SNARKs :**
+   Exécutez cette commande pour calculer une preuve à partir du circuit et de votre secret :
+   ```bash
+   npx snarkjs groth16 setup circuit.r1cs powersOfTau28_hez_final_12.ptau circuit_0000.zkey
+   ```
+
+3. **Générez une preuve cryptographique succincte :**
+   Exécutez cette commande pour calculer une preuve à partir du circuit et de votre secret :
+   ```bash
+   npx snarkjs groth16 fullProve input.json circuit_js/circuit.wasm circuit_0000.zkey
+   ```
+
+4. **Générez la clé de vérification :**
+   Enfin, générez la clé de vérification au format JSON afin de pouvoir utiliser notre circuit
+   ```bash
+   npx snarkjs zkey export verificationkey circuit_0000.zkey verification_key.json
+   ```
+
+🎉 Vous avez généré votre circuit de vérification !
+
+---
+
+### **Étape 5 : Générer une preuve**
 **But :** Utiliser le circuit pour prouver que vous connaissez un secret.
 
 1. **Préparez un fichier d’entrée :**
@@ -131,7 +162,7 @@ Ouvrez votre terminal et exécutez ces commandes :
 
 ---
 
-### **Étape 5 : Vérifier la preuve**
+### **Étape 6 : Vérifier la preuve**
 **But :** Vérifier que la preuve est valide sans révéler le secret.
 
 1. **Générez une clé de vérification :**
